@@ -3,10 +3,47 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:KeyFinder"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        x:Name="window"
+        Title="KeyFinder" Height="450" Width="800" WindowStartupLocation="CenterScreen" SizeToContent="Height">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" Height="24" Margin="10">
+            <Button Content="添 加" Command="{Binding AddCommand}" />
+            <Border Width="1" />
+            <Button Content="刷 新" Command="{Binding RefreshCommand}" />
+            <Border Width="1" />
+            <TextBox x:Name="tbFind" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding FindCommand}" CommandParameter="{Binding ElementName=tbFind, Path=Text}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </DockPanel>
+        <ItemsControl ItemsSource="{Binding DataCollection}" Margin="20">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Margin="5">
+                        <DockPanel DockPanel.Dock="Right" Height="25">
+                            <Button Content="删除" Command="{Binding DataContext.DeleteCommand, ElementName=window}" CommandParameter="{Binding}" />
+                            <Button Content="修改" Command="{Binding DataContext.EditCommand, ElementName=window}" CommandParameter="{Binding}" />
+                        </DockPanel>
+                        <UniformGrid Rows="1">
+                            <Border Background="AliceBlue" Margin="2,0" Padding="10,0">
+                                <TextBlock Text="{Binding Value1}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" />
+                            </Border>
+                            <Border Background="AliceBlue" Margin="2,0" Padding="10,0">
+                                <TextBlock Text="{Binding Value2}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" />
+                            </Border>
+                            <Border Background="AliceBlue" Margin="2,0" Padding="10,0">
+                                <TextBlock Text="{Binding Value3}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" />
+                            </Border>
+                        </UniformGrid>
+                    </DockPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </DockPanel>
 </Window>

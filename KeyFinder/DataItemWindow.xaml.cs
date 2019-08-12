@@ -10,20 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace KeyFinder
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// DataItemWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DataItemWindow : Window
     {
-        public MainWindow()
+        public DataItemWindow()
         {
+            Owner = App.Current.MainWindow;
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
             InitializeComponent();
-            this.DataContext = new ViewModel.MainViewModel();
+        }
+
+        void btnSaveClick(object sendre, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+            this.Close();
         }
     }
 }

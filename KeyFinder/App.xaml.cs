@@ -13,5 +13,12 @@ namespace KeyFinder
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            string s = Utilities.CryptHelper.Encrypt("keyfinder");
+            Console.WriteLine(s);
+            string s1 = Utilities.CryptHelper.Decrypt(s);
+            Console.WriteLine(s1);
+        }
     }
 }
