@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KeyFinder"
         mc:Ignorable="d"
-        Title="Data" Height="240" Width="400" SizeToContent="WidthAndHeight" WindowStyle="ToolWindow">
+        Title="Data" Height="340" Width="450" SizeToContent="WidthAndHeight" WindowStyle="ToolWindow">
     <StackPanel Margin="20,0,20,20" MinWidth="400">
         <TextBlock Text="1:"></TextBlock>
         <TextBox Text="{Binding Value1}" Focusable="True" Height="24" />
@@ -17,6 +17,10 @@
 
         <TextBlock Text="3:"></TextBlock>
         <TextBox Text="{Binding Value3}" Height="24" />
+        <Border Height="10" />
+
+        <TextBlock Text="4:"></TextBlock>
+        <TextBox Text="{Binding Value4}" MinHeight="24" AcceptsReturn="True" TextWrapping="Wrap" />
         <Border Height="10" />
 
         <WrapPanel HorizontalAlignment="Center">

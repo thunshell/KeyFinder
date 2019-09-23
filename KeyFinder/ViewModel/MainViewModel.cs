@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
+using Utilities;
 
 namespace KeyFinder.ViewModel
 {
@@ -147,8 +146,8 @@ namespace KeyFinder.ViewModel
                 {
                     data = fileInfo.OpenText().ReadToEnd();
                 }
-                string xml = Utilities.CryptHelper.Decrypt(data);
-                this._list = Utilities.XmlHelper.DeXMLSerialize<List<Data>>(xml);
+                string xml = CryptHelper.Decrypt(data);
+                this._list = XmlHelper.DeXMLSerialize<List<Data>>(xml);
                 //ReSetDataCollection(this._list);
             }
         }
@@ -164,8 +163,8 @@ namespace KeyFinder.ViewModel
 
         void Save(List<Data> list)
         {
-            string str = Utilities.XmlHelper.XMLSerialize(list);
-            string encript = Utilities.CryptHelper.Encrypt(str);
+            string str = XmlHelper.XMLSerialize(list);
+            string encript = CryptHelper.Encrypt(str);
             File.WriteAllText(path, encript);
         }
     }

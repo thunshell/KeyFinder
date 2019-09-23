@@ -43,6 +43,15 @@ namespace KeyFinder.Models
             set { base.SetProperty(ref value3, value); }
         }
 
+        private string value4;
+
+        public string Value4
+        {
+            get { return value4; }
+            set { base.SetProperty(ref value4, value); }
+        }
+
+
         public string AddTime { get; set; }
 
         public string UpdateTime { get; set; }
