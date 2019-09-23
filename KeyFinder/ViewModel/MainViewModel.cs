@@ -68,6 +68,7 @@ namespace KeyFinder.ViewModel
                     Value1 = s.Value1,
                     Value2 = s.Value2,
                     Value3 = s.Value3,
+                    Value4 = s.Value4,
                     AddTime = s.AddTime,
                     UpdateTime = s.UpdateTime
                 };
@@ -80,6 +81,7 @@ namespace KeyFinder.ViewModel
                     s.Value1 = d.Value1;
                     s.Value2 = d.Value2;
                     s.Value3 = d.Value3;
+                    s.Value4 = d.Value4;
                     Save(this._list);
                 }
             }
@@ -94,7 +96,7 @@ namespace KeyFinder.ViewModel
             {
                 Data d = new Data();
                 DataItemWindow window = new DataItemWindow { DataContext = d };
-                if(window.ShowDialog() == true)
+                if (window.ShowDialog() == true)
                 {
                     if (string.IsNullOrWhiteSpace(d.Value1))
                         return;
@@ -107,9 +109,7 @@ namespace KeyFinder.ViewModel
                     Save(this._list);
                 }
             }
-            catch (Exception ex)
-            {
-            }
+            catch { }
         }
 
         private void ExecuteFind(object obj)
@@ -117,12 +117,13 @@ namespace KeyFinder.ViewModel
             try
             {
                 string k = obj?.ToString();
-                if (string.IsNullOrWhiteSpace(k) || this._list == null || this._list.Count <= 0) return;
-                ReSetDataCollection(this._list.Where(d => d.Value1.Contains(k)));
+                if (this._list == null || this._list.Count <= 0) return;
+                if (string.IsNullOrWhiteSpace(k))
+                    ReSetDataCollection(null);
+                else
+                    ReSetDataCollection(this._list.Where(d => d.Value1.ToLowerInvariant().Contains(k.ToLowerInvariant())));
             }
-            catch (Exception)
-            {
-            }
+            catch { }
         }
 
         private void ExecuteRefresh(object obj)
@@ -157,7 +158,8 @@ namespace KeyFinder.ViewModel
             System.Windows.Application.Current.Dispatcher.Invoke(() =>
             {
                 DataCollection.Clear();
-                DataCollection.AddRange(list);
+                if(list != null && list.Count() > 0)
+                    DataCollection.AddRange(list);
             });
         }
 

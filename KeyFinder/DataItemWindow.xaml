@@ -6,27 +6,30 @@
         xmlns:local="clr-namespace:KeyFinder"
         mc:Ignorable="d"
         Title="Data" Height="340" Width="450" SizeToContent="WidthAndHeight" WindowStyle="ToolWindow">
-    <StackPanel Margin="20,0,20,20" MinWidth="400">
-        <TextBlock Text="1:"></TextBlock>
-        <TextBox Text="{Binding Value1}" Focusable="True" Height="24" />
-        <Border Height="10" />
-
-        <TextBlock Text="2:"></TextBlock>
-        <TextBox Text="{Binding Value2}" Height="24" />
-        <Border Height="10" />
-
-        <TextBlock Text="3:"></TextBlock>
-        <TextBox Text="{Binding Value3}" Height="24" />
-        <Border Height="10" />
-
-        <TextBlock Text="4:"></TextBlock>
-        <TextBox Text="{Binding Value4}" MinHeight="24" AcceptsReturn="True" TextWrapping="Wrap" />
-        <Border Height="10" />
-
-        <WrapPanel HorizontalAlignment="Center">
+    <DockPanel Margin="20,0,20,20" MinWidth="400">
+        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom">
             <Button Content="保 存" IsDefault="True" Click="btnSaveClick" />
             <Border Width="20" />
             <Button Content="退 出" IsCancel="True" />
         </WrapPanel>
-    </StackPanel>
+        
+        <StackPanel DockPanel.Dock="Top">
+            <TextBlock Text="1:"></TextBlock>
+            <TextBox Text="{Binding Value1}" Focusable="True" Height="24" />
+            <Border Height="10" />
+
+            <TextBlock Text="2:"></TextBlock>
+            <TextBox Text="{Binding Value2}" Height="24" />
+            <Border Height="10" />
+
+            <TextBlock Text="3:"></TextBlock>
+            <TextBox Text="{Binding Value3}" Height="24" />
+            <Border Height="10" />
+
+            <TextBlock Text="4:"></TextBlock>
+            <TextBox Text="{Binding Value4}" MinHeight="24" AcceptsReturn="True" TextWrapping="WrapWithOverflow" />
+            <Border Height="10" />
+        </StackPanel>
+
+    </DockPanel>
 </Window>
